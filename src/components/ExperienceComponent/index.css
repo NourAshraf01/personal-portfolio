@@ -1,0 +1,36 @@
+.type {
+    background: #D7FFE0;
+    border-radius: 100px;
+    color: #018C0F;
+    display: grid;
+    place-items: center;
+    padding: 10px;
+}
+
+.type span{
+    color: inherit;
+    font-weight: 800;
+}
+
+.flex-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.title-type-row{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.extras-row{
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.extras-row span{
+    color: #A7A7A7;
+}
