@@ -19,11 +19,15 @@ import prisma from '../../assets/skills/prisma.png';
 import postman from '../../assets/skills/postman.png';
 import java from '../../assets/skills/java.png';
 import profile from '../../assets/myimg.png';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 
 gsap.registerPlugin(TextPlugin, RoughEase, ScrollToPlugin);
 const Home = () => {
     const words = ["Nour.", "A Msc. student.", "A Developer."]
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    let boxDims = isMobile? 65: 100;
     useLayoutEffect(() => {
 
         let ctx = gsap.context(() => {
@@ -39,23 +43,6 @@ const Home = () => {
             })
 
 
-            gsap.set(".skills-carousel .skill", {
-                x: (i) => i * 100
-            });
-
-            let carouselWidth = 100 * 14; //Width of box * no. of boxes
-
-            gsap.to('.skills-carousel .skill', {
-                duration: 40,
-                ease: "none",
-                x: "+=" + (carouselWidth), //move each box 500px to right
-                modifiers: {
-                    x: gsap.utils.unitize(x => (parseFloat(x) % (carouselWidth))) //force x value to be between 0 and 500 using modulus
-                },
-                repeat: -1,
-            });
-
-
             gsap.to(".img-wrapper svg rect", {
                 opacity:0,
                 duration: 0.1,
@@ -67,6 +54,30 @@ const Home = () => {
 
 
     }, [])
+
+    useLayoutEffect(()=>{
+        let ctx = gsap.context(() => {
+            gsap.set(".skills-carousel .skill", {
+                x: (i) => (i * boxDims)
+            });
+
+            let carouselWidth = (boxDims * 14); //Width of box * no. of boxes
+
+            gsap.to('.skills-carousel .skill', {
+                duration: 40,
+                ease: "none",
+                x: "+=" + (carouselWidth), //move each box 500px to right
+                modifiers: {
+                    x: gsap.utils.unitize(x => (parseFloat(x) % (carouselWidth))-boxDims) //force x value to be between 0 and 500 using modulus
+                },
+                repeat: -1,
+            });
+
+
+        });
+        return () => ctx.revert();
+
+    },[boxDims])
 
     return (
         <>
@@ -160,47 +171,47 @@ const Home = () => {
                     <span>Tech:</span>
                     <div className='skills-carousel'>
                         <div className='skill'>
-                            <img width={100} height={100} src={html} alt="" />
+                            <img width={boxDims} height={boxDims} src={html} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={css} alt="" />
+                            <img width={boxDims} height={boxDims} src={css} alt="" />
                         </div>
 
                         <div className='skill'>
-                            <img width={100} height={100} src={js} alt="" />
+                            <img width={boxDims} height={boxDims} src={js} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={tailwind} alt="" />
+                            <img width={boxDims} height={boxDims} src={tailwind} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={typescript} alt="" />
+                            <img width={boxDims} height={boxDims} src={typescript} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={nodejs} alt="" />
+                            <img width={boxDims} height={boxDims} src={nodejs} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={reactjs} alt="" />
+                            <img width={boxDims} height={boxDims} src={reactjs} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={prisma} alt="" />
+                            <img width={boxDims} height={boxDims} src={prisma} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={zod} alt="" />
+                            <img width={boxDims} height={boxDims} src={zod} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={trpc} alt="" />
+                            <img width={boxDims} height={boxDims} src={trpc} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={python} alt="" />
+                            <img width={boxDims} height={boxDims} src={python} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={postman} alt="" />
+                            <img width={boxDims} height={boxDims} src={postman} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={java} alt="" />
+                            <img width={boxDims} height={boxDims} src={java} alt="" />
                         </div>
                         <div className='skill'>
-                            <img width={100} height={100} src={angular} alt="" />
+                            <img width={boxDims} height={boxDims} src={angular} alt="" />
                         </div>
                     </div>
                 </div>
