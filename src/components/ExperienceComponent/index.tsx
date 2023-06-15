@@ -72,7 +72,7 @@ const ExperienceComponent = ({ jobTitle, companyName, location, type, fromDate, 
                     </div>
                 </Box>
                 <Box className='card-back'>
-                    <Typography sx={{fontSize:'18px'}}>{description}</Typography>
+                    <Typography sx={{fontSize:'1.8rem',padding:'10px'}}>{description}</Typography>
                 </Box>
             </Paper>
         </Paper>

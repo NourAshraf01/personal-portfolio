@@ -3,8 +3,15 @@ import thumbnail from '../../assets/tesla_home.png';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import './index.css';
+import { useEffect, useState } from "react";
 
-const ProjectComponent = () => {
+type ProjectComponentProps = {
+    description: string;
+    title: string;
+    imgPreview: string;
+}
+
+const ProjectComponent = ({title,description,imgPreview}:ProjectComponentProps) => {
     const theme = useTheme();
     // const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     // console.log(isMobile)
@@ -12,12 +19,12 @@ const ProjectComponent = () => {
         <Paper sx={{ maxWidth: '1000px', minHeight: '400px', borderRadius: '10px' }} className="project-wrapper" elevation={3}>
 
             <Box sx={{ height: '50%' }}>
-                <ProjectPreview />
+                <ProjectPreview imgPreview={imgPreview} />
             </Box>
-            <Box sx={{ height: '50%',display:'flex',flexDirection:'column',gap:'10px',alignItems:'center',justifyContent:'center',padding:'2rem 1rem' }}>
-                <Typography>Tourism Website</Typography>
+            <Box sx={{ height: '50%',display:'flex',flexDirection:'column',gap:'10px',alignItems:'center',justifyContent:'center',padding:'2rem 1rem' ,maxWidth:'40%'}}>
+                <Typography>{title}</Typography>
                 <Typography color={'primary'} sx={{ fontSize: '1.5rem',textAlign:'center',textJustify:'auto' }}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae aliquid dicta expedita deserunt nihil modi eaque nam facere dolorem deleniti, recusandae reiciendis fuga sequi cupiditate suscipit, quisquam quae, dignissimos quos.
+                   {description}
 
                 </Typography>
 
@@ -29,7 +36,16 @@ const ProjectComponent = () => {
 }
 export default ProjectComponent;
 
-const ProjectPreview = () => {
+
+type ProjectPreviewProps = {
+    imgPreview: string;
+}
+const ProjectPreview = ({imgPreview}:ProjectPreviewProps) => {
+    const [profile, setProfile] = useState('');
+
+    useEffect(() => {
+        import(`../../assets/${imgPreview}`).then(obj => { console.log(obj); setProfile(obj.default) }).catch(err => console.log(err))
+    }, [])
     return (<>
 
         <Box sx={{ position: 'relative', height: '100%', width: '100%', borderRadius: '10px', overflow: 'hidden',display:'flex',alignItems:'center',justifyContent:'center' }} className="project-preview">
@@ -47,7 +63,7 @@ const ProjectPreview = () => {
                     </Tooltip>
                 </Box>
             </Box>
-            <img style={{maxWidth:'100%'}} src={thumbnail} ></img>
+            <img style={{maxWidth:'100%'}} src={profile} ></img>
         </Box>
 
     </>)

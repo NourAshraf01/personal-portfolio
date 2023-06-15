@@ -10,14 +10,9 @@ const About = () => {
             <div className="title-content-wrapper">
                 <h1>Work Experience</h1>
                 <div className='experiences'>
-                    <ExperienceComponent description={`• Planing the application architecture from A to Z and deciding on the fitting technologies to use for the project.
-• Develop, integrate and maintain microservices.
-• Lead small teams through projects (Assigning tasks, assure that the tasks being submitted are of quality and ensuring they are finished within
-their sprint)`} img='wendaSrl.svg' jobTitle='Full Stack Developer' companyName='Wenda S.r.l' fromDate='March 2022' toDate='On going' location='Remote | Bolognia, Italy' type='Part Time'/>
-                    <ExperienceComponent description={`• Planing the application architecture from A to Z and deciding on the fitting technologies to use for the project.
-• Develop, integrate and maintain microservices.
-• Lead small teams through projects (Assigning tasks, assure that the tasks being submitted are of quality and ensuring they are finished within
-their sprint)`} img='webgen.png' jobTitle='Frontend Web Developer' companyName='WebGen Studio.' fromDate='July. 2020' toDate='Dec. 2021' location='Remote | Cairo, Egypt' type='Part Time'/>
+                    <ExperienceComponent description={`Working in `} img='webgen.png' jobTitle='Frontend Web Developer' companyName='WebGen Studio.' fromDate='July. 2020' toDate='Dec. 2021' location='Remote | Cairo, Egypt' type='Part Time'/>
+                    <ExperienceComponent description={`Working in Wenda was a real eye opener for me, being embedded in an environment where a lot of requests need to be rolled out`} img='wendaSrl.svg' jobTitle='Full Stack Developer' companyName='Wenda S.r.l' fromDate='March 2022' toDate='On going' location='Remote | Bolognia, Italy' type='Part Time'/>
+
                     {/* <ExperienceComponent jobTitle='IT Specialist' companyName='PetroJet' fromDate='June 2018' toDate='Oct. 2018' location='Cairo, Egypt' type='Internship'/> */}
 
                 </div>

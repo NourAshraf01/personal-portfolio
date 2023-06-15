@@ -4,20 +4,26 @@ import './index.css'
 import { RoughEase } from "gsap/EasePack";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import angular from '../../assets/skills/angular.png';
+import angular from '../../assets/skills/angular.svg';
 import html from '../../assets/skills/html5.svg';
 import js from '../../assets/skills/js.svg';
 import css from '../../assets/skills/css3.svg';
 import nodejs from '../../assets/skills/nodejs.svg';
-import tailwind from '../../assets/skills/tailwind.png';
+import tailwind from '../../assets/skills/tailwind.svg';
 import reactjs from '../../assets/skills/reactjs.svg';
-import typescript from '../../assets/skills/typescript.png';
-import zod from '../../assets/skills/zod.png';
-import trpc from '../../assets/skills/tRPC.png';
-import python from '../../assets/skills/python.png';
-import prisma from '../../assets/skills/prisma.png';
-import postman from '../../assets/skills/postman.png';
-import java from '../../assets/skills/java.png';
+import typescript from '../../assets/skills/typescript.svg';
+import zod from '../../assets/skills/zod.svg';
+import trpc from '../../assets/skills/tRPC.svg';
+import python from '../../assets/skills/python.svg';
+import prisma from '../../assets/skills/prisma.svg';
+import postman from '../../assets/skills/postman.svg';
+import java from '../../assets/skills/java.svg';
+import nextjs from '../../assets/skills/nextjs.svg';
+import flutter from '../../assets/skills/flutter.svg';
+import docker from '../../assets/skills/docker.svg';
+import firebase from '../../assets/skills/firebase.svg';
+import pgsql from '../../assets/skills/postfresql.svg';
+
 import profile from '../../assets/myimg.png';
 import { useMediaQuery, useTheme } from '@mui/material';
 
@@ -61,14 +67,16 @@ const Home = () => {
                 x: (i) => (i * boxDims)
             });
 
-            let carouselWidth = (boxDims * 14); //Width of box * no. of boxes
+            
+
+            let carouselWidth = (boxDims * 19); //Width of box * no. of boxes
 
             gsap.to('.skills-carousel .skill', {
                 duration: 40,
                 ease: "none",
-                x: "+=" + (carouselWidth), //move each box 500px to right
+                x: "+=" + (carouselWidth), //move each box by the carouselWidth to right
                 modifiers: {
-                    x: gsap.utils.unitize(x => (parseFloat(x) % (carouselWidth))-boxDims) //force x value to be between 0 and 500 using modulus
+                    x: gsap.utils.unitize(x => (parseFloat(x) % (carouselWidth))-boxDims) //force x value to be between 0 and carouselWidth using modulus
                 },
                 repeat: -1,
             });
@@ -212,6 +220,21 @@ const Home = () => {
                         </div>
                         <div className='skill'>
                             <img width={boxDims} height={boxDims} src={angular} alt="" />
+                        </div>
+                        <div className='skill'>
+                            <img width={boxDims} height={boxDims} src={docker} alt="" />
+                        </div>
+                        <div className='skill'>
+                            <img width={boxDims} height={boxDims} src={firebase} alt="" />
+                        </div>
+                        <div className='skill'>
+                            <img width={boxDims} height={boxDims} src={flutter} alt="" />
+                        </div>
+                        <div className='skill'>
+                            <img width={boxDims} height={boxDims} src={pgsql} alt="" />
+                        </div>
+                        <div className='skill'>
+                            <img width={boxDims} height={boxDims} src={nextjs} alt="" />
                         </div>
                     </div>
                 </div>
