@@ -26,6 +26,7 @@ import pgsql from '../../assets/skills/postfresql.svg';
 
 import profile from '../../assets/myimg.png';
 import { useMediaQuery, useTheme } from '@mui/material';
+import Skill from '../../components/Skill';
 
 
 gsap.registerPlugin(TextPlugin, RoughEase, ScrollToPlugin);
@@ -33,7 +34,7 @@ const Home = () => {
     const words = ["Nour.", "A Msc. student.", "A Developer."]
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    let boxDims = isMobile? 65: 100;
+    let boxDims = isMobile ? 65 : 100;
     useLayoutEffect(() => {
 
         let ctx = gsap.context(() => {
@@ -50,10 +51,10 @@ const Home = () => {
 
 
             gsap.to(".img-wrapper svg rect", {
-                opacity:0,
+                opacity: 0,
                 duration: 0.1,
                 stagger: { amount: 1, from: "random" }
-              });
+            });
 
         });
         return () => ctx.revert();
@@ -61,13 +62,13 @@ const Home = () => {
 
     }, [])
 
-    useLayoutEffect(()=>{
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             gsap.set(".skills-carousel .skill", {
                 x: (i) => (i * boxDims)
             });
 
-            
+
 
             let carouselWidth = (boxDims * 19); //Width of box * no. of boxes
 
@@ -76,7 +77,7 @@ const Home = () => {
                 ease: "none",
                 x: "+=" + (carouselWidth), //move each box by the carouselWidth to right
                 modifiers: {
-                    x: gsap.utils.unitize(x => (parseFloat(x) % (carouselWidth))-boxDims) //force x value to be between 0 and carouselWidth using modulus
+                    x: gsap.utils.unitize(x => (parseFloat(x) % (carouselWidth)) - boxDims) //force x value to be between 0 and carouselWidth using modulus
                 },
                 repeat: -1,
             });
@@ -85,7 +86,7 @@ const Home = () => {
         });
         return () => ctx.revert();
 
-    },[boxDims])
+    }, [boxDims])
 
     return (
         <>
@@ -178,9 +179,11 @@ const Home = () => {
                 <div className='skills'>
                     <span>Tech:</span>
                     <div className='skills-carousel'>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={html} alt="" />
-                        </div>
+                        <Skill name='HTML'>
+                            <div className='skill'>
+                                <img width={boxDims} height={boxDims} src={html} alt="" />
+                            </div>
+                        </Skill>
                         <div className='skill'>
                             <img width={boxDims} height={boxDims} src={css} alt="" />
                         </div>
