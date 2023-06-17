@@ -24,7 +24,7 @@ const ExperienceComponent = ({ jobTitle, companyName, location, type, fromDate, 
     }, [])
 
     return (<>
-        <Paper elevation={3} sx={{ height: '350px', width: '300px', perspective: '1000px', background: 'transparent', cursor: 'pointer' }} className="card" onClick={() => { setClicked(clicked => !clicked) }}>
+        <Paper elevation={3} sx={{ height: '350px', width: '300px', perspective: '1000px', background: 'transparent', cursor: 'pointer' }} className="card" onClick={() => { setClicked(clicked => !clicked && description.length>0) }}>
             {/* <Box className="view-more">
                 <Button>View more</Button>
             </Box> */}
@@ -37,12 +37,13 @@ const ExperienceComponent = ({ jobTitle, companyName, location, type, fromDate, 
                 <Box className='card-front' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
                     <Box className="card-img" sx={{ width: '100%', position:'relative',height: '140px', padding: '30px', borderBottom: 'solid 1px #6666662e', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img width={'100%'} src={profile} alt="" />
+                        {description.length > 0?
                         <Box className="overlay" color={'white'}>
                             {/* <div className="overlay-content">
                                 <a className="hover" href="#!">View Project</a>
                             </div> */}
                             <Button className='view-btn' color={'inherit'} sx={{borderRadius:'20px'}} variant='outlined'>View details</Button>
-                        </Box>
+                        </Box>:<></>}
                     </Box>
 
                     <div className="flex-container card-content">
@@ -71,7 +72,7 @@ const ExperienceComponent = ({ jobTitle, companyName, location, type, fromDate, 
                         </div>
                     </div>
                 </Box>
-                <Box className='card-back'>
+                <Box className='card-back' sx={{overflowY:'scroll'}}>
                     <Typography sx={{fontSize:'1.8rem',padding:'10px'}}>{description}</Typography>
                 </Box>
             </Paper>

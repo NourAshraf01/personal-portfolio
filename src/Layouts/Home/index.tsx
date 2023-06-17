@@ -1,33 +1,13 @@
 import gsap from 'gsap';
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import './index.css'
 import { RoughEase } from "gsap/EasePack";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import angular from '../../assets/skills/angular.svg';
-import html from '../../assets/skills/html5.svg';
-import js from '../../assets/skills/js.svg';
-import css from '../../assets/skills/css3.svg';
-import nodejs from '../../assets/skills/nodejs.svg';
-import tailwind from '../../assets/skills/tailwind.svg';
-import reactjs from '../../assets/skills/reactjs.svg';
-import typescript from '../../assets/skills/typescript.svg';
-import zod from '../../assets/skills/zod.svg';
-import trpc from '../../assets/skills/tRPC.svg';
-import python from '../../assets/skills/python.svg';
-import prisma from '../../assets/skills/prisma.svg';
-import postman from '../../assets/skills/postman.svg';
-import java from '../../assets/skills/java.svg';
-import nextjs from '../../assets/skills/nextjs.svg';
-import flutter from '../../assets/skills/flutter.svg';
-import docker from '../../assets/skills/docker.svg';
-import firebase from '../../assets/skills/firebase.svg';
-import pgsql from '../../assets/skills/postfresql.svg';
-
-import profile from '../../assets/myimg.png';
+import profile from '../../assets/me.png';
 import { useMediaQuery, useTheme } from '@mui/material';
 import Skill from '../../components/Skill';
-
+import { TweenLite } from 'gsap';
 
 gsap.registerPlugin(TextPlugin, RoughEase, ScrollToPlugin);
 const Home = () => {
@@ -35,6 +15,7 @@ const Home = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     let boxDims = isMobile ? 65 : 100;
+    const skillsRef = useRef<TweenLite | null>(null);
     useLayoutEffect(() => {
 
         let ctx = gsap.context(() => {
@@ -70,9 +51,9 @@ const Home = () => {
 
 
 
-            let carouselWidth = (boxDims * 19); //Width of box * no. of boxes
+            let carouselWidth = (boxDims * 20); //Width of box * no. of boxes
 
-            gsap.to('.skills-carousel .skill', {
+            skillsRef.current = gsap.to('.skills-carousel .skill', {
                 duration: 40,
                 ease: "none",
                 x: "+=" + (carouselWidth), //move each box by the carouselWidth to right
@@ -83,10 +64,29 @@ const Home = () => {
             });
 
 
+
         });
         return () => ctx.revert();
 
     }, [boxDims])
+
+    const onMouseEnterHandler = () => {
+        if (skillsRef.current) {
+            gsap.to(skillsRef.current, {
+                duration: 0.5,
+                timeScale: 0.25
+            })
+        }
+        // skillsRef.current?.pause();
+    };
+    const onMouseLeaveHandler = () => {
+        if (skillsRef.current) {
+            gsap.to(skillsRef.current, {
+                duration: 0.5,
+                timeScale: 1
+            })
+        }
+    };
 
     return (
         <>
@@ -176,69 +176,30 @@ const Home = () => {
                         <span className='cursor'>_</span>
                     </h2>
                 </div>
-                <div className='skills'>
+                <div className='skills' onMouseEnter={onMouseEnterHandler}
+                    onMouseLeave={onMouseLeaveHandler}>
                     <span>Tech:</span>
                     <div className='skills-carousel'>
-                        <Skill name='HTML'>
-                            <div className='skill'>
-                                <img width={boxDims} height={boxDims} src={html} alt="" />
-                            </div>
-                        </Skill>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={css} alt="" />
-                        </div>
-
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={js} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={tailwind} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={typescript} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={nodejs} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={reactjs} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={prisma} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={zod} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={trpc} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={python} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={postman} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={java} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={angular} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={docker} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={firebase} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={flutter} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={pgsql} alt="" />
-                        </div>
-                        <div className='skill'>
-                            <img width={boxDims} height={boxDims} src={nextjs} alt="" />
-                        </div>
+                        <Skill name='h t m l 5' dims={boxDims} />
+                        <Skill name='c s s 3' dims={boxDims} />
+                        <Skill name='java script' dims={boxDims} />
+                        <Skill name='tail wind' dims={boxDims} />
+                        <Skill name='s a s s' dims={boxDims} />
+                        <Skill name='type script' dims={boxDims} />
+                        <Skill name='node js' dims={boxDims} />
+                        <Skill name='react js' dims={boxDims} />
+                        <Skill name='prisma' dims={boxDims} />
+                        <Skill name='zod' dims={boxDims} />
+                        <Skill name='tRPC' dims={boxDims} />
+                        <Skill name='python' dims={boxDims} />
+                        <Skill name='postman' dims={boxDims} />
+                        <Skill name='java' dims={boxDims} />
+                        <Skill name='angular' dims={boxDims} />
+                        <Skill name='docker' dims={boxDims} />
+                        <Skill name='firebase' dims={boxDims} />
+                        <Skill name='flutter' dims={boxDims} />
+                        <Skill name='postgre s q l' dims={boxDims} />
+                        <Skill name='next js' dims={boxDims} />
                     </div>
                 </div>
             </div>

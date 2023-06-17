@@ -45,7 +45,7 @@ function App() {
             <a target={'_blank'} href="https://github.com/NourAshraf01">
               <GithubFill color='#666666' />
             </a>
-            <a href="https://www.linkedin.com/in/nour-ashraf-287393178/" target={'_blank'}>
+            <a href="https://www.linkedin.com/in/nour-abdelmaksoud-287393178/" target={'_blank'}>
               <LinkedinBoxFill color='#666666' />
             </a>
           </div>
@@ -72,7 +72,7 @@ function App() {
                     <a target={'_blank'} href="https://github.com/NourAshraf01">
                         <GithubFill color='white' />
                     </a>
-                    <a href="https://www.linkedin.com/in/nour-ashraf-287393178/" target={'_blank'}>
+                    <a href="https://www.linkedin.com/in/nour-abdelmaksoud-287393178/" target={'_blank'}>
                         <LinkedinBoxFill color='white' />
                     </a>
                 </Box>
