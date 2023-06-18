@@ -42,6 +42,7 @@ function App() {
                 <a href="#about"><Typography>About</Typography></a>
                 <a href="#projects"><Typography>Projects</Typography></a>
                 <a href="#contact"><Typography>Contact</Typography></a>
+                <a download={true} href={process.env.PUBLIC_URL+'/Nour_Abdelmaksoud_CV.pdf'}><Typography>Resume</Typography></a>
                 <div className='social'>
                   <a target={'_blank'} href="https://github.com/NourAshraf01">
                     <GithubFill color='#666666' />
@@ -67,17 +68,7 @@ function App() {
         <section id="contact">
           <Contact />
         </section>
-        <Box sx={{ position: 'sticky', bottom: '30px', right: '30px',marginBottom:'10px',marginRight:'10px', display: 'flex', justifyContent: 'flex-end' }}>
-          <Box sx={{ position: 'relative' }}>
-            <Paper sx={{display:'grid',placeItems:"center",borderRadius:'100%', width: '60px', height: '60px'}} elevation={6}>
-              <Tooltip title="Download CV">
-                <IconButton download={true} href={process.env.PUBLIC_URL+'/Nour_Abdelmaksoud_CV.pdf'}>
-                  <SimCardDownloadIcon />
-                </IconButton>
-              </Tooltip>
-            </Paper>
-          </Box>
-        </Box>
+
         <footer>
           <Typography sx={{ textAlign: 'center', fontSize: '18px' }}>Copyright © 2023. All rights are reserved.</Typography>
           <Box sx={{ display: 'flex', gap: '20px' }}>

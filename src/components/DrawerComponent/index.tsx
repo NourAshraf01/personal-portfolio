@@ -8,6 +8,7 @@ import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 const DrawerComponent = () => {
 
     const [open, setOpen] = useState(false);
@@ -63,6 +64,17 @@ const DrawerComponent = () => {
                         </ListItemIcon>
                         <ListItemText>
                             Contact
+                        </ListItemText>
+                    </ListItemButton>
+                </ListItem>
+
+                <ListItem sx={{ padding: 0 }}>
+                    <ListItemButton download={true} href={process.env.PUBLIC_URL+'/Nour_Abdelmaksoud_CV.pdf'} onClick={() => setOpen(false)}>
+                        <ListItemIcon>
+                            <FileDownloadIcon />
+                        </ListItemIcon>
+                        <ListItemText>
+                            Resume
                         </ListItemText>
                     </ListItemButton>
                 </ListItem>
