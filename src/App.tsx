@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from './Layouts/Home';
@@ -19,7 +19,7 @@ function App() {
   const nav: any = useRef();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  const [activeRef, setActiveRef] = useState('#home');
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       gsap.fromTo(nav.current, { background: 'transparent', boxShadow: '' }, { duration: 0.3, scrollTrigger: { toggleActions: 'play none none reverse', start: 20, scroller: "#main" }, boxShadow: '0 -6px 10px 5px rgba(0,0,0,0.5)', background: "#FFFFFF" })
@@ -27,6 +27,11 @@ function App() {
     return () => ctx.revert();
   }, []);
 
+
+  useEffect(() => {
+    window.onscroll = (e)=>{}
+  }, [])
+   
   return (
     <ThemeProvider theme={appTheme}>
       <CssBaseline enableColorScheme />
@@ -38,10 +43,10 @@ function App() {
             isMobile ?
               <DrawerComponent />
               : <nav>
-                <a href="#home"><Typography>Home</Typography></a>
-                <a href="#about"><Typography>About</Typography></a>
-                <a href="#projects"><Typography>Projects</Typography></a>
-                <a href="#contact"><Typography>Contact</Typography></a>
+                <a href="#home" className={`${activeRef === '#home'?'active':''}`} onClick={()=>{setActiveRef('#home')}}><Typography>Home</Typography></a>
+                <a href="#about" className={`${activeRef === '#about'?'active':''}`} onClick={()=>{setActiveRef('#about')}}><Typography>About</Typography></a>
+                <a href="#projects" className={`${activeRef === '#projects'?'active':''}`} onClick={()=>{setActiveRef('#projects')}}><Typography>Projects</Typography></a>
+                <a href="#contact" className={`${activeRef === '#contact'?'active':''}`} onClick={()=>{setActiveRef('#contact')}}><Typography>Contact</Typography></a>
                 <a download={true} href={process.env.PUBLIC_URL+'/Nour_Abdelmaksoud_CV.pdf'}><Typography>Resume</Typography></a>
                 <div className='social'>
                   <a target={'_blank'} href="https://github.com/NourAshraf01">

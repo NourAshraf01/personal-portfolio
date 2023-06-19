@@ -45,6 +45,10 @@
     top:0;
 }
 
+.skill{
+    user-select: none;
+}
+
 /* .skill{
     width: 100px;
     height: 100px;

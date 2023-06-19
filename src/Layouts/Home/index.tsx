@@ -1,11 +1,12 @@
 import gsap from 'gsap';
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './index.css'
 import { RoughEase } from "gsap/EasePack";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import profile from '../../assets/me.png';
-import { useMediaQuery, useTheme } from '@mui/material';
+import profile2 from '../../assets/myimg.png';
+import { Tooltip, useMediaQuery, useTheme } from '@mui/material';
 import Skill from '../../components/Skill';
 import { TweenLite } from 'gsap';
 
@@ -15,6 +16,7 @@ const Home = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     let boxDims = isMobile ? 65 : 100;
+    const [img,setImg] = useState('');
     const skillsRef = useRef<TweenLite | null>(null);
     useLayoutEffect(() => {
 
@@ -70,6 +72,10 @@ const Home = () => {
 
     }, [boxDims])
 
+    useEffect(()=>{
+        setImg(profile);
+    },[])
+
     const onMouseEnterHandler = () => {
         if (skillsRef.current) {
             gsap.to(skillsRef.current, {
@@ -91,84 +97,86 @@ const Home = () => {
     return (
         <>
             <div className="content">
-                <div className="img-wrapper">
-                    <svg width="100%" height="100%" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clipPath="url(#clip0_160_1231)">
-                            <rect width="63" height="63" fill="#CEC3B8" />
-                            <rect y="126" width="63" height="63" fill="#CEC3B8" />
-                            <rect y="252" width="63" height="63" fill="#CEC3B8" />
-                            <rect y="378" width="63" height="63" fill="#CEC3B8" />
-                            <rect y="63" width="63" height="63" fill="#CEC3B8" />
-                            <rect y="189" width="63" height="63" fill="#CEC3B8" />
-                            <rect y="315" width="63" height="63" fill="#CEC3B8" />
-                            <rect y="441" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="252" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="252" y="126" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="252" y="252" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="252" y="378" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="252" y="63" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="252" y="189" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="252" y="315" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="252" y="441" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="126" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="126" y="126" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="126" y="252" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="126" y="378" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="126" y="63" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="126" y="189" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="126" y="315" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="126" y="441" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="378" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="378" y="126" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="378" y="252" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="378" y="378" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="378" y="63" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="378" y="189" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="378" y="315" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="378" y="441" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="63" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="63" y="126" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="63" y="252" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="63" y="378" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="63" y="63" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="63" y="189" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="63" y="315" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="63" y="441" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="315" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="315" y="126" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="315" y="252" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="315" y="378" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="315" y="63" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="315" y="189" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="315" y="315" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="315" y="441" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="189" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="189" y="126" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="189" y="252" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="189" y="378" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="189" y="63" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="189" y="189" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="189" y="315" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="189" y="441" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="441" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="441" y="126" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="441" y="252" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="441" y="378" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="441" y="63" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="441" y="189" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="441" y="315" width="63" height="63" fill="#CEC3B8" />
-                            <rect x="441" y="441" width="63" height="63" fill="#CEC3B8" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_160_1231">
-                                <rect width="500" height="500" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
-                    <div className="img">
-                        <img src={profile} alt="" />
+                <Tooltip title="" >
+                    <div className="img-wrapper" >
+                        <svg width="100%" height="100%" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clipPath="url(#clip0_160_1231)">
+                                <rect width="63" height="63" fill="#CEC3B8" />
+                                <rect y="126" width="63" height="63" fill="#CEC3B8" />
+                                <rect y="252" width="63" height="63" fill="#CEC3B8" />
+                                <rect y="378" width="63" height="63" fill="#CEC3B8" />
+                                <rect y="63" width="63" height="63" fill="#CEC3B8" />
+                                <rect y="189" width="63" height="63" fill="#CEC3B8" />
+                                <rect y="315" width="63" height="63" fill="#CEC3B8" />
+                                <rect y="441" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="252" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="252" y="126" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="252" y="252" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="252" y="378" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="252" y="63" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="252" y="189" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="252" y="315" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="252" y="441" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="126" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="126" y="126" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="126" y="252" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="126" y="378" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="126" y="63" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="126" y="189" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="126" y="315" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="126" y="441" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="378" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="378" y="126" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="378" y="252" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="378" y="378" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="378" y="63" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="378" y="189" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="378" y="315" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="378" y="441" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="63" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="63" y="126" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="63" y="252" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="63" y="378" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="63" y="63" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="63" y="189" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="63" y="315" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="63" y="441" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="315" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="315" y="126" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="315" y="252" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="315" y="378" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="315" y="63" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="315" y="189" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="315" y="315" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="315" y="441" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="189" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="189" y="126" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="189" y="252" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="189" y="378" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="189" y="63" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="189" y="189" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="189" y="315" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="189" y="441" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="441" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="441" y="126" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="441" y="252" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="441" y="378" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="441" y="63" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="441" y="189" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="441" y="315" width="63" height="63" fill="#CEC3B8" />
+                                <rect x="441" y="441" width="63" height="63" fill="#CEC3B8" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_160_1231">
+                                    <rect width="500" height="500" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <div className="img">
+                            <img src={profile2} alt="" />
+                        </div>
                     </div>
-                </div>
+                </Tooltip>
                 <div className='intro-text'>
                     <h2>
                         <span className='main-text'>Hi, I'm </span>
