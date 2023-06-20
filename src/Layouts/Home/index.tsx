@@ -102,7 +102,7 @@ const Home = () => {
         function triggerIntertia(){
             inertiaRef.current = gsap.from(skillsRef.current!, { timeScale: deltaRef.current, duration: 3, ease: Power3.easeOut });
             isMouseDownRef.current = false;
-            deltaRef.current = 0;
+            deltaRef.current = 1;
         } 
     }
     
