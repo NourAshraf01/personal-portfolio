@@ -21,8 +21,9 @@ const Skill = ({ name, dims }: SkillProps) => {
 
         <Tooltip title={capitalizeSentence(name).replaceAll(' ', '')} followCursor={true} open={tooltipIsOpen}
                                 onOpen={() => setTooltipIsOpen(true)}
-                                onClose={() => setTooltipIsOpen(false)}>
-            <div className="skill" onClick={(e) => { e.stopPropagation(); e.preventDefault(); setTooltipIsOpen(tooltip => !tooltip) }}>
+                                onClose={() => setTooltipIsOpen(false)}
+                                >
+            <div className="skill" onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); setTooltipIsOpen(tooltip => !tooltip) }}>
                 <img draggable={false} width={dims} height={dims} src={profile} alt="" />
             </div>
         </Tooltip>
