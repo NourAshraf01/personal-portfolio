@@ -23,7 +23,7 @@ const Skill = ({ name, dims }: SkillProps) => {
                                 onOpen={() => setTooltipIsOpen(true)}
                                 onClose={() => setTooltipIsOpen(false)}
                                 >
-            <div className="skill" onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); setTooltipIsOpen(tooltip => !tooltip) }}>
+            <div className="skill" onClick={(e) => { e.stopPropagation(); e.preventDefault(); setTooltipIsOpen(tooltip => !tooltip) }}>
                 <img draggable={false} width={dims} height={dims} src={profile} alt="" />
             </div>
         </Tooltip>
