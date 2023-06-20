@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import gsap, { Power3 } from 'gsap';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './index.css'
 import { RoughEase } from "gsap/EasePack";
@@ -9,6 +9,8 @@ import profile2 from '../../assets/myimg.png';
 import { Tooltip, useMediaQuery, useTheme } from '@mui/material';
 import Skill from '../../components/Skill';
 import { TweenLite } from 'gsap';
+import { horizontalLoop } from '../../utils/gsap';
+import { PointerEvent } from 'react';
 
 gsap.registerPlugin(TextPlugin, RoughEase, ScrollToPlugin);
 const Home = () => {
@@ -17,7 +19,12 @@ const Home = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     let boxDims = isMobile ? 65 : 100;
     const [img,setImg] = useState('');
-    const skillsRef = useRef<TweenLite | null>(null);
+    const skillsRef = useRef<TimelineLite | null>(null);
+    const inertiaRef = useRef<TweenLite | null>(null);
+    const deltaRef = useRef(0);
+    const currentXRef = useRef(0);
+    const isMouseDownRef = useRef(false);
+
     useLayoutEffect(() => {
 
         let ctx = gsap.context(() => {
@@ -47,23 +54,28 @@ const Home = () => {
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
-            gsap.set(".skills-carousel .skill", {
-                x: (i) => (i * boxDims)
-            });
+            const boxes = gsap.utils.toArray(".skills-carousel .skill");
+            const loop = horizontalLoop(boxes, {paused: false, draggable: true,repeat:-1,speed:0.5});
+            skillsRef.current = loop;
+            // gsap.set(".skills-carousel .skill", {
+            //     x: (i) => (i * boxDims)
+            // });
+
+            // const boxes = gsap.utils.toArray(".skills-carousel .skill");
 
 
 
-            let carouselWidth = (boxDims * 20); //Width of box * no. of boxes
+            // let carouselWidth = (boxDims * 20); //Width of box * no. of boxes
 
-            skillsRef.current = gsap.to('.skills-carousel .skill', {
-                duration: 40,
-                ease: "none",
-                x: "+=" + (carouselWidth), //move each box by the carouselWidth to right
-                modifiers: {
-                    x: gsap.utils.unitize(x => (parseFloat(x) % (carouselWidth)) - boxDims) //force x value to be between 0 and carouselWidth using modulus
-                },
-                repeat: -1,
-            });
+            // skillsRef.current = gsap.to('.skills-carousel .skill', {
+            //     duration: 40,
+            //     ease: "none",
+            //     x: "+=" + (carouselWidth), //move each box by the carouselWidth to right
+            //     modifiers: {
+            //         x: gsap.utils.unitize(x => (parseFloat(x) % (carouselWidth)) - boxDims) //force x value to be between 0 and carouselWidth using modulus
+            //     },
+            //     repeat: -1,
+            // });
 
 
 
@@ -74,25 +86,37 @@ const Home = () => {
 
     useEffect(()=>{
         setImg(profile);
+        window.onpointerup = ()=>{
+            onPointerUpHandler();
+        }
     },[])
 
-    const onMouseEnterHandler = () => {
-        if (skillsRef.current) {
-            gsap.to(skillsRef.current, {
-                duration: 0.5,
-                timeScale: 0.25
-            })
-        }
-        // skillsRef.current?.pause();
-    };
-    const onMouseLeaveHandler = () => {
-        if (skillsRef.current) {
-            gsap.to(skillsRef.current, {
-                duration: 0.5,
-                timeScale: 1
-            })
-        }
-    };
+ 
+
+
+    function onPointerUpHandler(): void {
+        if(inertiaRef.current)
+            inertiaRef.current.timeScale(1).duration(0).kill()
+        
+        triggerIntertia();
+        function triggerIntertia(){
+            inertiaRef.current = gsap.from(skillsRef.current!, { timeScale: deltaRef.current, duration: 3, ease: Power3.easeOut });
+            isMouseDownRef.current = false;
+            deltaRef.current = 0;
+        } 
+    }
+    
+    function onPointerDownHandler(event: PointerEvent<HTMLDivElement>): void {
+        currentXRef.current = event.clientX;
+        isMouseDownRef.current = true;
+    }
+    
+    function onPointerMoveHandler(event: PointerEvent<HTMLDivElement>): void {
+        if (!isMouseDownRef.current) return;
+        const delta = currentXRef.current - event.clientX ;
+        deltaRef.current = delta;
+        currentXRef.current = event.clientX;
+    }
 
     return (
         <>
@@ -184,8 +208,11 @@ const Home = () => {
                         <span className='cursor'>_</span>
                     </h2>
                 </div>
-                <div className='skills' onMouseEnter={onMouseEnterHandler}
-                    onMouseLeave={onMouseLeaveHandler}>
+                <div className='skills' 
+                    // onMouseEnter={onMouseEnterHandler}
+                    onPointerDown={onPointerDownHandler}
+                    onPointerMove={onPointerMoveHandler}
+                    >
                     <span>Tech:</span>
                     <div className='skills-carousel'>
                         <Skill name='h t m l 5' dims={boxDims} />

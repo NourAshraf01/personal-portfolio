@@ -26,12 +26,29 @@
 
 
 .skills-carousel .skill{
-    position: absolute;
+    /* position: absolute; */
 }
+
+.carousel {
+    /* background: blue; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
 
 .skills-carousel{
     width: 100%;
-    height: 150px;
+    /* height: 150px; */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 
 .skills-carousel::after{
@@ -47,6 +64,9 @@
 
 .skill{
     user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 /* .skill{
