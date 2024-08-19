@@ -1,5 +1,4 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Home from './Layouts/Home';
 import About from './Layouts/About';
@@ -11,7 +10,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Box, CssBaseline, IconButton, Paper, ThemeProvider, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import DrawerComponent from './components/DrawerComponent';
 import { appTheme } from './themes/theme';
-import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 
 gsap.registerPlugin(ScrollTrigger);
 
