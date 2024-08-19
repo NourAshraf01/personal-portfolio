@@ -4,8 +4,13 @@ const About = () => {
     return (<>
         <div className="about-wrapper">
             <div className="title-content-wrapper">
+                <div className="about">
+                <div className="right">
                 <h1>About Me</h1>
-                <span>Welcome to my portfolio! I'm a passionate full-stack web developer with a background in business informatics and a current focus on information systems in my master's program. I thrive on exploring the ever-evolving world of web development and finding innovative solutions to real-world challenges. From designing elegant user interfaces to building robust back-end systems, I aim to create seamless digital experiences that captivate users. Join me on this exciting journey as we shape the future of the web together!</span>
+                <h3>📍 Münster, Germany</h3>
+                <span>I'm a passionate full-stack web developer with a background in business informatics and a current focus on information systems in my master's program. I thrive on exploring the ever-evolving world of web development and finding innovative solutions to real-world challenges. From implementing elegant user interfaces to building robust back-end systems, I aim to create seamless digital experiences that captivate users. Join me on this exciting journey as we shape the future of the web together!</span>
+                </div>
+                </div>
             </div>
             <div className="title-content-wrapper">
                 <h1>Work Experience</h1>

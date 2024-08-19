@@ -70,9 +70,9 @@ function App() {
         <section id="projects">
           <Projects />
         </section>
-        <section id="contact">
+        {/* <section id="contact">
           <Contact />
-        </section>
+        </section> */}
 
         <footer>
           <Typography sx={{ textAlign: 'center', fontSize: '18px' }}>Copyright © 2023. All rights are reserved.</Typography>

@@ -9,7 +9,7 @@ export const appTheme = createTheme({
     secondary: pink,
   },
   typography: {
-    fontFamily: "Poppins",
+    fontFamily: "Inter",
     fontSize: 32,
   },
 });

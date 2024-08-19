@@ -95,13 +95,19 @@ const Home = () => {
 
 
     function onPointerUpHandler(): void {
-        if(inertiaRef.current)
-            inertiaRef.current.timeScale(1).duration(0).kill()
-        
-        triggerIntertia();
+        skillsRef.current?.play()
+        isMouseDownRef.current = false;
+        if(inertiaRef.current){
+            inertiaRef.current.pause().timeScale(1).duration(0).kill();
+            inertiaRef.current = null;
+        }
+            triggerIntertia();
         function triggerIntertia(){
-            inertiaRef.current = gsap.from(skillsRef.current!, { timeScale: deltaRef.current, duration: 3, ease: Power3.easeOut });
-            isMouseDownRef.current = false;
+            inertiaRef.current = gsap.fromTo(skillsRef.current!, 2,{ yoyo:true,timeScale: deltaRef.current, ease: Power3.easeOut,onComplete:()=>{
+                inertiaRef.current = null;
+                // console.log('end')
+            }},{timeScale:1});
+            console.log(skillsRef.current);
             deltaRef.current = 1;
         } 
     }
@@ -109,6 +115,7 @@ const Home = () => {
     function onPointerDownHandler(event: PointerEvent<HTMLDivElement>): void {
         currentXRef.current = event.clientX;
         isMouseDownRef.current = true;
+        skillsRef.current?.pause()
     }
     
     function onPointerMoveHandler(event: PointerEvent<HTMLDivElement>): void {
